@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #ece6d6;
+  --card: #f7f3e8;
+  --note: #f7e58a;
+  --note-ink: #2b2620;
+  --ink: #2b2620;
+  --ink-soft: #5c554b;
+  --stamp: #c8323a;
+  --line: rgba(43, 38, 32, 0.22);
+  --line-soft: rgba(43, 38, 32, 0.1);
+  --focus: #1f5fbf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1b1814;
+    --card: #26221d;
+    --note: #e9d46a;
+    --note-ink: #2b2620;
+    --ink: #ece6d6;
+    --ink-soft: #b3aa9a;
+    --stamp: #e0505a;
+    --line: rgba(236, 230, 214, 0.26);
+    --line-soft: rgba(236, 230, 214, 0.12);
+    --focus: #8ab4ff;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-note: var(--note);
+  --color-note-ink: var(--note-ink);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-stamp: var(--stamp);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-focus: var(--focus);
+  --font-heading: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-type: var(--font-special), "Courier New", monospace;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-type);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 31px,
+    var(--line-soft) 31px,
+    var(--line-soft) 32px
+  );
+}
+
+/* Visible focus for every interactive element. */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Rubber stamp look for labels like URGENT. */
+.stamp {
+  display: inline-block;
+  border: 2px solid var(--stamp);
+  color: var(--stamp);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.05rem 0.4rem;
+  transform: rotate(-3deg);
+}
+
+/* Assistant memo content. Keep whitespace since work orders are line based. */
+.memo-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
